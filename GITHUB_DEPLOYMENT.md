@@ -3,10 +3,12 @@
 ## الطريقة الأولى: عبر GitHub Desktop (الأسهل) 🖥️
 
 ### 1. تحميل GitHub Desktop
+
 - اذهب إلى: https://desktop.github.com/
 - حمل وثبت GitHub Desktop
 
 ### 2. إنشاء Repository
+
 1. افتح GitHub Desktop
 2. اضغط على "File" → "Add Local Repository"
 3. اختر مجلد المشروع: `c:\javaSpringBoot`
@@ -20,6 +22,7 @@
 ## الطريقة الثانية: عبر موقع GitHub (توصى) 🌐
 
 ### 1. إنشاء Repository جديد
+
 1. اذهب إلى: https://github.com
 2. سجل دخول أو أنشئ حساب جديد
 3. اضغط على "+" في الأعلى → "New repository"
@@ -30,6 +33,7 @@
 8. اضغط "Create repository"
 
 ### 2. ربط المشروع بـ GitHub
+
 **نسخ الأوامر من صفحة GitHub والصقها في PowerShell:**
 
 ```powershell
@@ -46,6 +50,7 @@ git push -u origin main
 ## الطريقة الثالثة: GitHub CLI (إذا أردت تثبيته) ⚡
 
 ### 1. تثبيت GitHub CLI
+
 ```powershell
 # عبر Chocolatey (إذا كان مثبت)
 choco install gh
@@ -54,6 +59,7 @@ choco install gh
 ```
 
 ### 2. تسجيل الدخول وإنشاء Repository
+
 ```powershell
 cd c:\javaSpringBoot
 gh auth login
@@ -66,13 +72,17 @@ git push -u origin main
 ## بعد رفع المشروع 📋
 
 ### 1. الحصول على رابط المشروع
+
 بعد نجاح الرفع، ستحصل على رابط مثل:
+
 ```
 https://github.com/[YOUR_USERNAME]/springboot-oracle-crud-api
 ```
 
 ### 2. مشاركة المشروع مع صديقك
+
 أرسل له:
+
 1. **رابط المشروع** على GitHub
 2. **ملف SETUP_GUIDE.md** (سيكون موجود في Repository)
 3. **التنبيهات المهمة** (انظر أدناه)
@@ -82,6 +92,7 @@ https://github.com/[YOUR_USERNAME]/springboot-oracle-crud-api
 ## ⚠️ تنبيهات مهمة لصديقك
 
 ### 1. متطلبات Oracle Database
+
 ```
 - يحتاج Oracle Database 12c أو أحدث
 - إعداد User: HR مع password: 123
@@ -89,7 +100,9 @@ https://github.com/[YOUR_USERNAME]/springboot-oracle-crud-api
 ```
 
 ### 2. تخصيص إعدادات قاعدة البيانات
+
 **ملف:** `src/main/resources/application.properties`
+
 ```properties
 spring.datasource.url=jdbc:oracle:thin:@[HOST]:[PORT]:[SERVICE_NAME]
 spring.datasource.username=[USERNAME]
@@ -97,6 +110,7 @@ spring.datasource.password=[PASSWORD]
 ```
 
 ### 3. أوامر التحميل والتشغيل
+
 ```bash
 # 1. تحميل المشروع
 git clone https://github.com/[YOUR_USERNAME]/springboot-oracle-crud-api.git
@@ -135,6 +149,7 @@ mvn spring-boot:run
 ## ✅ التحقق من نجاح الرفع
 
 بعد تنفيذ أي من الطرق أعلاه:
+
 1. اذهب إلى رابط Repository على GitHub
 2. تأكد من وجود جميع الملفات
 3. تأكد من وجود `SETUP_GUIDE.md`
