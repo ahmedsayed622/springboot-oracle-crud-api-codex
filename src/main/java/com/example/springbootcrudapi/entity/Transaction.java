@@ -4,114 +4,83 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+/**
+ * Transaction Entity لجدول المعاملات
+ * يحتوي على تفاصيل المعاملات المالية
+ */
 @Entity
 @Table(name = "MD_TRANSACTION_CURRENT")
 public class Transaction {
 
     @Id
-    @Column(name = "ROWNUM")
-    private Long seq;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "transaction_seq")
+    @SequenceGenerator(name = "transaction_seq", sequenceName = "TRANSACTION_SEQ", initialValue = 1, allocationSize = 1)
+    @Column(name = "ID")
+    private Long id;
 
-    @Column(name = "OUTLET_CODE")
-    private String entityId;
+    @Column(name = "TRANS_ID", length = 50)
+    private String transId;
 
-    @Column(name = "MERCHANT_NAME")
-    private String entityName;
-
-    @Column(name = "TERMINAL_ID")
+    @Column(name = "TERMINAL_ID", length = 20)
     private String terminalId;
 
-    @Column(name = "TRANS_ID")
-    private String transactionType;
+    @Column(name = "MERCHANT_NAME", length = 100)
+    private String merchantName;
 
-    @Column(name = "SOURCE_AMOUNT")
-    private BigDecimal transactionAmount;
+    @Column(name = "SOURCE_AMOUNT", precision = 15, scale = 2)
+    private BigDecimal sourceAmount;
+
+    @Column(name = "MERCHANT_COMMISSION", precision = 15, scale = 2)
+    private BigDecimal merchantCommission;
 
     @Column(name = "TRANSACTION_DATE")
     private LocalDateTime transactionDate;
 
-    @Column(name = "MASK_PAN")
-    private String maskedCardNumber;
-
-    @Column(name = "AUTHORIZATION_NUMBER")
-    private String authorizationNumber;
-
-    @Column(name = "MERCHANT_COMMISSION")
-    private BigDecimal merchantCommission;
-
-    @Column(name = "MERCHANT_ACCOUNT_NUMBER")
-    private String merchantAccountNumber;
-
     @Column(name = "PROCESSING_DATE")
     private LocalDateTime processingDate;
 
-    // Calculated field - not mapped to database column
-    @Transient
-    private BigDecimal transactionNetAmount;
+    @Column(name = "MASK_PAN", length = 20)
+    private String maskPan;
 
-    @Transient
-    private String transactionDateFormatted;
+    @Column(name = "AUTHORIZATION_NUMBER", length = 20)
+    private String authorizationNumber;
 
-    @Transient
-    private String transactionTimeFormatted;
+    @Column(name = "MERCHANT_ACCOUNT_NUMBER", length = 30)
+    private String merchantAccountNumber;
 
-    @Transient
-    private String processingDateFormatted;
+    @Column(name = "OUTLET_CODE", length = 20)
+    private String outletCode;
 
     // Default constructor
-    public Transaction() {}
-
-    // Constructor with all fields
-    public Transaction(Long seq, String entityId, String entityName, String terminalId, 
-                      String transactionType, BigDecimal transactionAmount, 
-                      LocalDateTime transactionDate, String maskedCardNumber, 
-                      String authorizationNumber, BigDecimal merchantCommission, 
-                      String merchantAccountNumber, LocalDateTime processingDate) {
-        this.seq = seq;
-        this.entityId = entityId;
-        this.entityName = entityName;
-        this.terminalId = terminalId;
-        this.transactionType = transactionType;
-        this.transactionAmount = transactionAmount;
-        this.transactionDate = transactionDate;
-        this.maskedCardNumber = maskedCardNumber;
-        this.authorizationNumber = authorizationNumber;
-        this.merchantCommission = merchantCommission;
-        this.merchantAccountNumber = merchantAccountNumber;
-        this.processingDate = processingDate;
+    public Transaction() {
     }
 
-    // Calculate net amount (Source_Amount - Merchant_commission)
-    public BigDecimal getTransactionNetAmount() {
-        if (transactionAmount != null && merchantCommission != null) {
-            return transactionAmount.subtract(merchantCommission);
-        }
-        return BigDecimal.ZERO;
+    // Constructor with main fields
+    public Transaction(String transId, String terminalId, String merchantName,
+            BigDecimal sourceAmount, LocalDateTime transactionDate) {
+        this.transId = transId;
+        this.terminalId = terminalId;
+        this.merchantName = merchantName;
+        this.sourceAmount = sourceAmount;
+        this.transactionDate = transactionDate;
+        this.processingDate = LocalDateTime.now();
     }
 
     // Getters and Setters
-    public Long getSeq() {
-        return seq;
+    public Long getId() {
+        return id;
     }
 
-    public void setSeq(Long seq) {
-        this.seq = seq;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getEntityId() {
-        return entityId;
+    public String getTransId() {
+        return transId;
     }
 
-    public void setEntityId(String entityId) {
-        this.entityId = entityId;
-    }
-
-    public String getEntityName() {
-        return entityName;
-    }
-
-    public void setEntityName(String entityName) {
-        this.entityName = entityName;
+    public void setTransId(String transId) {
+        this.transId = transId;
     }
 
     public String getTerminalId() {
@@ -122,44 +91,20 @@ public class Transaction {
         this.terminalId = terminalId;
     }
 
-    public String getTransactionType() {
-        return transactionType;
+    public String getMerchantName() {
+        return merchantName;
     }
 
-    public void setTransactionType(String transactionType) {
-        this.transactionType = transactionType;
+    public void setMerchantName(String merchantName) {
+        this.merchantName = merchantName;
     }
 
-    public BigDecimal getTransactionAmount() {
-        return transactionAmount;
+    public BigDecimal getSourceAmount() {
+        return sourceAmount;
     }
 
-    public void setTransactionAmount(BigDecimal transactionAmount) {
-        this.transactionAmount = transactionAmount;
-    }
-
-    public LocalDateTime getTransactionDate() {
-        return transactionDate;
-    }
-
-    public void setTransactionDate(LocalDateTime transactionDate) {
-        this.transactionDate = transactionDate;
-    }
-
-    public String getMaskedCardNumber() {
-        return maskedCardNumber;
-    }
-
-    public void setMaskedCardNumber(String maskedCardNumber) {
-        this.maskedCardNumber = maskedCardNumber;
-    }
-
-    public String getAuthorizationNumber() {
-        return authorizationNumber;
-    }
-
-    public void setAuthorizationNumber(String authorizationNumber) {
-        this.authorizationNumber = authorizationNumber;
+    public void setSourceAmount(BigDecimal sourceAmount) {
+        this.sourceAmount = sourceAmount;
     }
 
     public BigDecimal getMerchantCommission() {
@@ -170,12 +115,12 @@ public class Transaction {
         this.merchantCommission = merchantCommission;
     }
 
-    public String getMerchantAccountNumber() {
-        return merchantAccountNumber;
+    public LocalDateTime getTransactionDate() {
+        return transactionDate;
     }
 
-    public void setMerchantAccountNumber(String merchantAccountNumber) {
-        this.merchantAccountNumber = merchantAccountNumber;
+    public void setTransactionDate(LocalDateTime transactionDate) {
+        this.transactionDate = transactionDate;
     }
 
     public LocalDateTime getProcessingDate() {
@@ -186,45 +131,47 @@ public class Transaction {
         this.processingDate = processingDate;
     }
 
-    public String getTransactionDateFormatted() {
-        return transactionDateFormatted;
+    public String getMaskPan() {
+        return maskPan;
     }
 
-    public void setTransactionDateFormatted(String transactionDateFormatted) {
-        this.transactionDateFormatted = transactionDateFormatted;
+    public void setMaskPan(String maskPan) {
+        this.maskPan = maskPan;
     }
 
-    public String getTransactionTimeFormatted() {
-        return transactionTimeFormatted;
+    public String getAuthorizationNumber() {
+        return authorizationNumber;
     }
 
-    public void setTransactionTimeFormatted(String transactionTimeFormatted) {
-        this.transactionTimeFormatted = transactionTimeFormatted;
+    public void setAuthorizationNumber(String authorizationNumber) {
+        this.authorizationNumber = authorizationNumber;
     }
 
-    public String getProcessingDateFormatted() {
-        return processingDateFormatted;
+    public String getMerchantAccountNumber() {
+        return merchantAccountNumber;
     }
 
-    public void setProcessingDateFormatted(String processingDateFormatted) {
-        this.processingDateFormatted = processingDateFormatted;
+    public void setMerchantAccountNumber(String merchantAccountNumber) {
+        this.merchantAccountNumber = merchantAccountNumber;
+    }
+
+    public String getOutletCode() {
+        return outletCode;
+    }
+
+    public void setOutletCode(String outletCode) {
+        this.outletCode = outletCode;
     }
 
     @Override
     public String toString() {
         return "Transaction{" +
-                "seq=" + seq +
-                ", entityId='" + entityId + '\'' +
-                ", entityName='" + entityName + '\'' +
+                "id=" + id +
+                ", transId='" + transId + '\'' +
                 ", terminalId='" + terminalId + '\'' +
-                ", transactionType='" + transactionType + '\'' +
-                ", transactionAmount=" + transactionAmount +
+                ", merchantName='" + merchantName + '\'' +
+                ", sourceAmount=" + sourceAmount +
                 ", transactionDate=" + transactionDate +
-                ", maskedCardNumber='" + maskedCardNumber + '\'' +
-                ", authorizationNumber='" + authorizationNumber + '\'' +
-                ", merchantCommission=" + merchantCommission +
-                ", merchantAccountNumber='" + merchantAccountNumber + '\'' +
-                ", processingDate=" + processingDate +
                 '}';
     }
 }
