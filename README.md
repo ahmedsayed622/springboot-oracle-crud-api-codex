@@ -14,20 +14,21 @@ This is a production-ready Spring Boot REST API application that provides:
 
 ## 🛠️ **Technology Stack**
 
-| Technology | Version | Purpose |
-|------------|---------|---------|
-| **Spring Boot** | 3.1.2 | Main framework |
-| **Spring Security** | 6.x | Authentication & Authorization |
-| **JWT (JJWT)** | 0.11.5 | Token-based authentication |
-| **Oracle Database** | 12c+ | Primary database |
-| **Hibernate JPA** | 6.x | ORM framework |
-| **HikariCP** | Latest | Connection pooling |
-| **Maven** | 3.8+ | Build management |
-| **Java** | 17+ | Programming language |
+| Technology          | Version | Purpose                        |
+| ------------------- | ------- | ------------------------------ |
+| **Spring Boot**     | 3.1.2   | Main framework                 |
+| **Spring Security** | 6.x     | Authentication & Authorization |
+| **JWT (JJWT)**      | 0.11.5  | Token-based authentication     |
+| **Oracle Database** | 12c+    | Primary database               |
+| **Hibernate JPA**   | 6.x     | ORM framework                  |
+| **HikariCP**        | Latest  | Connection pooling             |
+| **Maven**           | 3.8+    | Build management               |
+| **Java**            | 17+     | Programming language           |
 
 ## 🔑 **Key Features**
 
 ### **Authentication & Security**
+
 - ✅ JWT-based authentication
 - ✅ Role-based access control (USER/ADMIN)
 - ✅ BCrypt password encryption
@@ -35,12 +36,14 @@ This is a production-ready Spring Boot REST API application that provides:
 - ✅ Stateless session management
 
 ### **User Management**
+
 - ✅ User registration and login
 - ✅ Profile management
 - ✅ Search users by name
 - ✅ Role assignment
 
 ### **Transaction Management**
+
 - ✅ Complete CRUD operations
 - ✅ Advanced search with query parameters
 - ✅ Date range filtering
@@ -50,6 +53,7 @@ This is a production-ready Spring Boot REST API application that provides:
 - ✅ Statistics and reporting
 
 ### **Database Integration**
+
 - ✅ Oracle Database 12c support
 - ✅ Automatic schema generation
 - ✅ Connection pooling with HikariCP
@@ -97,17 +101,20 @@ app.jwt.expiration=86400000
 ## 🚀 **Getting Started**
 
 ### **1. Clone the Repository**
+
 ```bash
 git clone https://github.com/ahmedsayed622/springBootWithjwtOuth.git
 cd springBootWithjwtOuth
 ```
 
 ### **2. Build the Project**
+
 ```bash
 mvn clean compile
 ```
 
 ### **3. Run the Application**
+
 ```bash
 mvn spring-boot:run
 ```
@@ -115,11 +122,13 @@ mvn spring-boot:run
 The application will start on **http://localhost:8081**
 
 ### **4. Verify Installation**
+
 ```bash
 curl http://localhost:8081/api/health
 ```
 
 Expected response:
+
 ```json
 {
   "database": "Connected",
@@ -132,39 +141,40 @@ Expected response:
 
 ### **Authentication Endpoints**
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/auth/register` | Register new user |
-| POST | `/api/auth/login` | Login user |
-| GET | `/api/auth/me` | Get current user info |
-| POST | `/api/auth/logout` | Logout user |
+| Method | Endpoint             | Description           |
+| ------ | -------------------- | --------------------- |
+| POST   | `/api/auth/register` | Register new user     |
+| POST   | `/api/auth/login`    | Login user            |
+| GET    | `/api/auth/me`       | Get current user info |
+| POST   | `/api/auth/logout`   | Logout user           |
 
 ### **User Management Endpoints**
 
-| Method | Endpoint | Description | Access |
-|--------|----------|-------------|---------|
-| GET | `/api/users` | Get all users | USER/ADMIN |
-| GET | `/api/users/{id}` | Get user by ID | USER/ADMIN |
-| POST | `/api/users` | Create new user | ADMIN |
-| PUT | `/api/users/{id}` | Update user | ADMIN |
-| DELETE | `/api/users/{id}` | Delete user | ADMIN |
-| GET | `/api/users/search?name={name}` | Search users by name | USER/ADMIN |
+| Method | Endpoint                        | Description          | Access     |
+| ------ | ------------------------------- | -------------------- | ---------- |
+| GET    | `/api/users`                    | Get all users        | USER/ADMIN |
+| GET    | `/api/users/{id}`               | Get user by ID       | USER/ADMIN |
+| POST   | `/api/users`                    | Create new user      | ADMIN      |
+| PUT    | `/api/users/{id}`               | Update user          | ADMIN      |
+| DELETE | `/api/users/{id}`               | Delete user          | ADMIN      |
+| GET    | `/api/users/search?name={name}` | Search users by name | USER/ADMIN |
 
 ### **Transaction Endpoints**
 
-| Method | Endpoint | Description | Access |
-|--------|----------|-------------|---------|
-| GET | `/api/transactions` | Get all transactions | USER/ADMIN |
-| GET | `/api/transactions/{id}` | Get transaction by ID | USER/ADMIN |
-| POST | `/api/transactions` | Create transaction | USER/ADMIN |
-| PUT | `/api/transactions/{id}` | Update transaction | ADMIN |
-| DELETE | `/api/transactions/{id}` | Delete transaction | ADMIN |
-| GET | `/api/transactions/filter?{params}` | Advanced search | USER/ADMIN |
-| GET | `/api/transactions/search?q={query}` | Global search | USER/ADMIN |
+| Method | Endpoint                             | Description           | Access     |
+| ------ | ------------------------------------ | --------------------- | ---------- |
+| GET    | `/api/transactions`                  | Get all transactions  | USER/ADMIN |
+| GET    | `/api/transactions/{id}`             | Get transaction by ID | USER/ADMIN |
+| POST   | `/api/transactions`                  | Create transaction    | USER/ADMIN |
+| PUT    | `/api/transactions/{id}`             | Update transaction    | ADMIN      |
+| DELETE | `/api/transactions/{id}`             | Delete transaction    | ADMIN      |
+| GET    | `/api/transactions/filter?{params}`  | Advanced search       | USER/ADMIN |
+| GET    | `/api/transactions/search?q={query}` | Global search         | USER/ADMIN |
 
 ## 🔍 **Advanced Search Examples**
 
 ### **Query Parameter Search**
+
 ```bash
 # Search by specific criteria
 GET /api/transactions/filter?merchantName=متجر&minAmount=100&maxAmount=500
@@ -177,6 +187,7 @@ GET /api/transactions/filter?terminalId=TERM001&minAmount=50
 ```
 
 ### **Global Search**
+
 ```bash
 # Search across all fields
 GET /api/transactions/search?q=TXN001
@@ -187,6 +198,7 @@ GET /api/transactions/search?q=150
 ## 🧪 **Testing with PowerShell**
 
 ### **1. User Registration**
+
 ```powershell
 $registerBody = '{
     "username": "testuser",
@@ -200,6 +212,7 @@ $token = ($response.Content | ConvertFrom-Json).user.token
 ```
 
 ### **2. User Login**
+
 ```powershell
 $loginBody = '{
     "usernameOrEmail": "testuser",
@@ -212,6 +225,7 @@ $headers = @{ "Authorization" = "Bearer $token" }
 ```
 
 ### **3. Create Transaction**
+
 ```powershell
 $transactionBody = '{
     "transId": "TXN001",
@@ -229,6 +243,7 @@ $newTransaction = Invoke-WebRequest -Uri "http://localhost:8081/api/transactions
 ```
 
 ### **4. Search Transactions**
+
 ```powershell
 # Advanced search
 $searchResponse = Invoke-WebRequest -Uri "http://localhost:8081/api/transactions/filter?merchantName=Test&minAmount=100" -Method GET -Headers $headers
@@ -240,30 +255,32 @@ $globalSearch = Invoke-WebRequest -Uri "http://localhost:8081/api/transactions/s
 ## 📊 **Database Schema**
 
 ### **Users Table (APP_USERS)**
-| Column | Type | Description |
-|--------|------|-------------|
-| id | NUMBER | Primary key |
-| username | VARCHAR2(50) | Unique username |
-| email | VARCHAR2(100) | Unique email |
-| password | VARCHAR2(255) | BCrypt encrypted |
-| full_name | VARCHAR2(100) | Full name |
-| role | VARCHAR2(20) | USER or ADMIN |
-| enabled | NUMBER(1) | Account status |
-| created_date | TIMESTAMP | Creation date |
+
+| Column       | Type          | Description      |
+| ------------ | ------------- | ---------------- |
+| id           | NUMBER        | Primary key      |
+| username     | VARCHAR2(50)  | Unique username  |
+| email        | VARCHAR2(100) | Unique email     |
+| password     | VARCHAR2(255) | BCrypt encrypted |
+| full_name    | VARCHAR2(100) | Full name        |
+| role         | VARCHAR2(20)  | USER or ADMIN    |
+| enabled      | NUMBER(1)     | Account status   |
+| created_date | TIMESTAMP     | Creation date    |
 
 ### **Transactions Table (MD_TRANSACTION_CURRENT)**
-| Column | Type | Description |
-|--------|------|-------------|
-| id | NUMBER | Primary key |
-| trans_id | VARCHAR2(50) | Transaction ID |
-| terminal_id | VARCHAR2(20) | Terminal ID |
-| merchant_name | VARCHAR2(100) | Merchant name |
-| source_amount | NUMBER(10,2) | Transaction amount |
-| transaction_date | TIMESTAMP | Transaction date |
-| mask_pan | VARCHAR2(20) | Masked PAN |
-| authorization_number | VARCHAR2(50) | Auth number |
-| merchant_account_number | VARCHAR2(50) | Merchant account |
-| outlet_code | VARCHAR2(20) | Outlet code |
+
+| Column                  | Type          | Description        |
+| ----------------------- | ------------- | ------------------ |
+| id                      | NUMBER        | Primary key        |
+| trans_id                | VARCHAR2(50)  | Transaction ID     |
+| terminal_id             | VARCHAR2(20)  | Terminal ID        |
+| merchant_name           | VARCHAR2(100) | Merchant name      |
+| source_amount           | NUMBER(10,2)  | Transaction amount |
+| transaction_date        | TIMESTAMP     | Transaction date   |
+| mask_pan                | VARCHAR2(20)  | Masked PAN         |
+| authorization_number    | VARCHAR2(50)  | Auth number        |
+| merchant_account_number | VARCHAR2(50)  | Merchant account   |
+| outlet_code             | VARCHAR2(20)  | Outlet code        |
 
 ## 🔒 **Security Features**
 
@@ -307,6 +324,7 @@ logging.level.org.hibernate.type.descriptor.sql.BasicBinder=TRACE
 ## 🚀 **Deployment**
 
 ### **Production Configuration**
+
 ```properties
 # Production settings
 spring.profiles.active=prod
@@ -316,6 +334,7 @@ logging.level.org.hibernate.SQL=WARN
 ```
 
 ### **Docker Support** (Coming Soon)
+
 ```dockerfile
 FROM openjdk:17-jdk-slim
 COPY target/springboot-crud-api-0.0.1-SNAPSHOT.jar app.jar
@@ -338,6 +357,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 👨‍💻 **Author**
 
 **Ahmed Sayed**
+
 - GitHub: [@ahmedsayed622](https://github.com/ahmedsayed622)
 - Email: ahmedsayed622@example.com
 
