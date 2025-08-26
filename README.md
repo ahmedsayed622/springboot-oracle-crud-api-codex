@@ -1,6 +1,6 @@
-# 🚀 Spring Boot JWT Authentication System
+# 🚀 Spring Boot Oracle CRUD API with JWT Authentication - Codex Edition
 
-A complete Spring Boot application with JWT authentication, Oracle database integration, and comprehensive CRUD operations.
+A complete enterprise-grade Spring Boot application with JWT authentication, Oracle database integration, and comprehensive CRUD operations. This is the enhanced Codex edition with advanced features and optimizations.
 
 ## 🎯 **Project Overview**
 
@@ -11,6 +11,19 @@ This is a production-ready Spring Boot REST API application that provides:
 - **Transaction Management** with advanced search capabilities
 - **Oracle Database** integration with HikariCP connection pooling
 - **Comprehensive API Documentation** and testing examples
+
+## ⭐ **Codex Edition Features**
+
+This enhanced Codex edition includes additional features:
+
+- **🔍 Advanced Search Engine** - Global search across all transaction fields
+- **📊 Query Parameter Filtering** - Flexible multi-criteria search
+- **📈 Enhanced Analytics** - Transaction statistics and reporting
+- **🛡️ Improved Security** - Enhanced JWT handling and validation
+- **📚 Comprehensive Documentation** - Complete API usage guides
+- **🧪 Production Testing** - Validated with real-world scenarios
+- **⚡ Performance Optimizations** - Optimized queries and caching
+- **🐛 Bug Fixes** - Resolved issues from previous versions
 
 ## 🛠️ **Technology Stack**
 
@@ -103,8 +116,8 @@ app.jwt.expiration=86400000
 ### **1. Clone the Repository**
 
 ```bash
-git clone https://github.com/ahmedsayed622/springBootWithjwtOuth.git
-cd springBootWithjwtOuth
+git clone https://github.com/ahmedsayed622/springboot-oracle-crud-api-codex.git
+cd springboot-oracle-crud-api-codex
 ```
 
 ### **2. Build the Project**
@@ -361,6 +374,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - GitHub: [@ahmedsayed622](https://github.com/ahmedsayed622)
 - Email: ahmedsayed622@example.com
 
+## 📋 **Version Info**
+
+- **Current Version:** Codex Edition v2.0
+- **Release Date:** August 2025
+- **Previous Version:** [SpringBootWithjwtOuth v1.0](https://github.com/ahmedsayed622/springBootWithjwtOuth)
+- **License:** MIT License
+
 ## 🙏 **Acknowledgments**
 
 - Spring Boot team for the excellent framework
@@ -374,7 +394,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 If you have any questions or need help with the project, please:
 
-1. Check the [Issues](https://github.com/ahmedsayed622/springBootWithjwtOuth/issues) page
+1. Check the [Issues](https://github.com/ahmedsayed622/springboot-oracle-crud-api-codex/issues) page
 2. Create a new issue with detailed description
 3. Contact the author directly
 
